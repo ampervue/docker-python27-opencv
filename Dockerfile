@@ -3,9 +3,13 @@ FROM ubuntu:trusty
 
 MAINTAINER David Karchmer <dkarchmer@ampervue.com>
 
-#################################
-# Add OpenCV to python27-ffmpeg
-#################################
+########################################
+# Image based on Ubuntu:trusty
+#
+#   with Python 2.7
+#   and OpenCV 3 (built)
+#   plus a bunch of build essencials
+#######################################
 
 # Set Locale
 
