@@ -197,3 +197,7 @@ RUN make install
 WORKDIR /usr/local/
 RUN rm -rf /usr/local/src
 # =================================
+
+# Install pip
+# =================================
+RUN curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py | python
