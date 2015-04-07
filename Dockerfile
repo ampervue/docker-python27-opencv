@@ -1,9 +1,11 @@
 FROM ubuntu:trusty
 
+# https://github.com/ampervue/docker-python27-opencv
 
-MAINTAINER David Karchmer <dkarchmer@ampervue.com>
+MAINTAINER David Karchmer <dkarchmer@gmail.com>
 
 ########################################
+#
 # Image based on Ubuntu:trusty
 #
 #   with Python 2.7

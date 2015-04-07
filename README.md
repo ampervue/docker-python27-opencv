@@ -1,4 +1,5 @@
-# python27-opencv-ffmpeg
+# docker-python27-opencv
+
 
 A Docker image running Ubuntu:trusty with Python 2.7, the latest FFMPEG (built from source), and OpenCV 3 (built from source)
 
