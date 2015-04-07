@@ -13,11 +13,11 @@ docker build -t <imageName> .
 
 ### To pull and run from hub.docker.com
 
-Docker Hub: https://registry.hub.docker.com/u/dkarchmervue/python27-opencv-ffmpeg/
+Docker Hub: https://registry.hub.docker.com/u/dkarchmervue/python27-opencv/
 
-Source and example: https://bitbucket.org/ampervue/python27-opencv-ffmpeg
+Source and example: https://github.com/ampervue/docker-python27-opencv
 
 ~~~~
-docker pull dkarchmervue/python27-opencv-ffmpeg
-docker run -ti dkarchmervue/python27-opencv-ffmpeg bash
+docker pull dkarchmervue/python27-opencv
+docker run -ti dkarchmervue/python27-opencv bash
 ~~~~
