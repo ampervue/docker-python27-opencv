@@ -5,22 +5,23 @@ FROM dkarchmervue/python27-opencv
 MAINTAINER David Karchmer <dkarchmer@gmail.com>
 
 # ============================================================================
-# As an example, we compile a face recognition tool from
-#   "Mastering OpenCV with Practical Computer Vision Projects"
+# As an example, we compile a small program to load an image and write out
+#     a gray scale version of it.
+# See http://docs.opencv.org/doc/tutorials/introduction/load_save_image/load_save_image.html
 #
 # ~~~~
 # git clone https://dkarchmer-vue@bitbucket.org/ampervue/python27-opencv.git
 # cd example
-# docker build -t face .
-# docker run --rm -ti face --input <jpg picture>
+# docker build -t opencvtest .
+# docker run --rm -ti opencvtest sample.jpg
 #
 # # Mount current directory on container so that file can be written back to host
-# docker run --rm -ti -v ${PWD}:/code face --file <jpg input>
-# ls thumbnail.jpg
-# open thumbnail.jpg
+# docker run --rm -ti -v ${PWD}:/code opencvtest sample.jpg
+# ls app/Gray_Image.jpg
+# open app/Gray_Image.jpg
 #
 # # To run with bash
-# docker run --entrypoint bash -ti thumbnail
+# docker run --entrypoint bash -ti opencvtest
 # ~~~~
 # ============================================================================
 
@@ -42,6 +43,9 @@ ADD app /code/app
 WORKDIR /code/app
 
 RUN g++ -ggdb `pkg-config --cflags opencv` -o `basename opencvtest.cpp .cpp` opencvtest.cpp `pkg-config --libs opencv`
+
+CMD [ "/code/app/sample.jpg" ]
+ENTRYPOINT [ "/code/app/opencvtest" ]
 
 
 
