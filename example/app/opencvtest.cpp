@@ -20,6 +20,7 @@ int main( int argc, char** argv )
  cvtColor( image, gray_image, CV_BGR2GRAY );
 
  imwrite( "Gray_Image.jpg", gray_image );
+ imshow( "Gray Image", gray_image);
 
  return 0;
 }

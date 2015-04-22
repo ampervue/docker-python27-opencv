@@ -13,24 +13,36 @@ MAINTAINER David Karchmer <dkarchmer@gmail.com>
 # git clone https://dkarchmer-vue@bitbucket.org/ampervue/python27-opencv.git
 # cd example
 # docker build -t opencvtest .
-# docker run --rm -ti opencvtest sample.jpg
+# docker run -it --rm -p 5901:5901 -e USER=root opencvtest \
+#    bash -c "vncserver :1 -geometry 1280x800 -depth 24 && tail -F /root/.vnc/*.log"
 #
-# # Mount current directory on container so that file can be written back to host
-# docker run --rm -ti -v ${PWD}:/code opencvtest sample.jpg
-# ls app/Gray_Image.jpg
-# open app/Gray_Image.jpg
-#
-# # To run with bash
-# docker run --entrypoint bash -ti opencvtest
+# Connect to vnc://<host>:5901 via VNC client.
+# On a terminal, call program with: `opencvtest sample.jpg` and open generated Gray_Image.jpg
 # ~~~~
 # ============================================================================
+
+# Step 0: Install a VNC Server so we can use OpenCV GUI features
+# --------------------------------------------------------------
+
+# Install VNC server and an editor
+RUN apt-get update && \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y \
+  x11-apps \
+  firefox \
+  lxde-core \
+  lxterminal \
+  tightvncserver \
+  emacs \
+  gpicview \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN touch /root/.Xresources
 
 # Step 1: Install any Python packages
 # ----------------------------------------
 
 RUN mkdir /code
 WORKDIR /code
-
 
 # Step 2: Copy code
 # ----------------------------------------
@@ -44,8 +56,13 @@ WORKDIR /code/app
 
 RUN g++ -ggdb `pkg-config --cflags opencv` -o `basename opencvtest.cpp .cpp` opencvtest.cpp `pkg-config --libs opencv`
 
-CMD [ "/code/app/sample.jpg" ]
-ENTRYPOINT [ "/code/app/opencvtest" ]
+# Define default command.
+CMD ["bash"]
+
+# Expose ports.
+EXPOSE 5901
+
+
 
 
 
