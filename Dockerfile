@@ -22,7 +22,7 @@ ENV LC_ALL en_US.UTF-8
 
 RUN apt-get -qq remove ffmpeg
 
-RUN echo deb http://archive.ubuntu.com/ubuntu precise universe multiverse >> /etc/apt/sources.list; \
+RUN echo deb http://archive.ubuntu.com/ubuntu trusty universe multiverse >> /etc/apt/sources.list; \
     apt-get update -qq && apt-get install -y --force-yes \
     curl \
     git \
