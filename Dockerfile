@@ -106,6 +106,7 @@ RUN ldconfig
 RUN apt-get update -qq && apt-get install -y --force-yes \
     libass-dev
 
+#            --enable-libx265 - Remove until we can debug compile error
 WORKDIR /usr/local/src/ffmpeg
 RUN ./configure --extra-libs="-ldl" \
             --enable-gpl \
@@ -120,7 +121,6 @@ RUN ./configure --extra-libs="-ldl" \
             --enable-libvorbis \
             --enable-libvpx \
             --enable-libx264 \
-            --enable-libx265 \
             --enable-nonfree
 RUN make -j 4
 RUN make install
