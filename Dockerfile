@@ -22,6 +22,7 @@ RUN git clone --depth 1 https://github.com/l-smash/l-smash \
    && hg clone https://bitbucket.org/multicoreware/x265 \
    && git clone --depth 1 git://source.ffmpeg.org/ffmpeg \
    && git clone https://github.com/Itseez/opencv.git \
+   && git clone https://github.com/Itseez/opencv_contrib.git \
    && git clone --depth 1 git://github.com/mstorsjo/fdk-aac.git \
    && git clone --depth 1 https://chromium.googlesource.com/webm/libvpx \
    && git clone --depth 1 git://git.opus-codec.org/opus.git \
@@ -84,6 +85,7 @@ RUN make install
 # Build OpenCV 3.x
 # =================================
 RUN apt-get update -qq && apt-get install -y --force-yes libopencv-dev
+RUN pip install --no-cache-dir --upgrade numpy
 WORKDIR /usr/local/src
 RUN mkdir -p opencv/release
 WORKDIR /usr/local/src/opencv/release
@@ -92,6 +94,7 @@ RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
           -D WITH_TBB=ON \
           -D BUILD_PYTHON_SUPPORT=ON \
           -D WITH_V4L=ON \
+          -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
           ..
 
 RUN make -j4
