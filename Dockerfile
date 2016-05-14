@@ -24,7 +24,7 @@ RUN git clone --depth 1 https://github.com/l-smash/l-smash \
    && git clone https://github.com/Itseez/opencv.git \
    && git clone --depth 1 git://github.com/mstorsjo/fdk-aac.git \
    && git clone --depth 1 https://chromium.googlesource.com/webm/libvpx \
-   && git clone --depth 1 git://git.opus-codec.org/opus.git \
+   && git clone https://git.xiph.org/opus.git \
    && git clone --depth 1 https://github.com/mulx/aacgain.git
 
 # Build L-SMASH
